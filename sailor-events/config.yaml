@@ -1,3 +1,2 @@
 disclaimer: null
-server_delay: -3600
-server_delay_new: -3600
+server_delay: 0
