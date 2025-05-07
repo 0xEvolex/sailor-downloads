@@ -201,7 +201,7 @@ Capture the Flag: |-
   5% chance to give 11D Accessory Elixir Coupon.
 
   10x Ice Trophies can be exchange for 1 reward on Event So-Ok.
-Special Trade: |-
+Special Trade (1 hour): |-
   Special Trades happen daily with different durations.
 
   Schedule / Durations:
@@ -214,16 +214,36 @@ Special Trade: |-
   All special trade routes are enabled.
 
   For more information check out the jobbing guide on sailor's website.
-Daily Reset: |-
-  Daily Reset will reset certain daily quests and activities.
+Special Trade (2 hours): |-
+  Special Trades happen daily with different durations.
 
-  1. Attendance Reward Calendar
-  2. Blaze Dungeon (1 every 24 hours)
-  3. FGW Limit (2 per day for each grade)
-  4. Daily Quest Manager / Genie Quest
+  Schedule / Durations:
+
+  Every day at:
+  02:00 - 03:00 GMT+2 (1 hour)
+  15:00 - 16:00 GMT+2 (1 hour) (2h on sunday)
+  20:00 - 22:00 GMT+2 (2 hours) (excluding sundays)
+
+  All special trade routes are enabled.
+
+  For more information check out the jobbing guide on sailor's website.
+Calendar Reset: |-
+  Attendance Reward Calendar will reset and is ready to be claimed again.
+  Take care, whenever the calender ends you will be unable to claim the rewards anymore.
+Genie Reset: |-
+  Genie Reset will reset the Genie Quest and the Genie Quest Manager.
+  It's a daily quest designed to help you gear up your character.
+  
+  - Lv 71-90: D10 Moon and D10 Sun Equipment
+  - Lv91-100: D10 Moon, D10 Sun and D11 Nova Equipment
+  - Lv101-110: D10 Sun, D11 Nova, D11 Egy A and D11 Egy B Equipment
+  - Lv111-120: D11 Nova, D11 Egy A, D11 Egy and D12 Magic Equipment
+  - Lv121-125: D11 Nova, D11 Egy A, D11 Egy and D12 Magic Equipment
+
+  Take note that you might have to abandon quest if you outlevel it.
 Fence Trade: |-
   Fence Trades are Special Trades, but for thieves.
-  They usually happen one hour after Special Trades.git 
+  They usually happen one hour after Special Trades.
 
   Schedule / Durations:
 
