@@ -17,7 +17,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 3
+                "Order": 4
             }
         },
         "BA Random": {
@@ -33,10 +33,10 @@
             "registration_needed": true,
             "pre_registration": "00:10",
             "register_method": "Arena Manager",
-            "enabled": false,
+            "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 6
+                "Order": 7
             }
         },
         "BA Party": {
@@ -55,7 +55,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 7
+                "Order": 8
             }
         },
         "BA Flag": {
@@ -74,7 +74,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 8
+                "Order": 9
             }
         },
         "BA Job": {
@@ -93,7 +93,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 9
+                "Order": 10
             }
         },
         "BA Guild": {
@@ -109,7 +109,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 10
+                "Order": 11
             }
         },
         "Capture The Flag": {
@@ -125,9 +125,10 @@
             "registration_needed": true,
             "pre_registration": "00:10",
             "register_method": "Event So-Ok",
+            "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 12
+                "Order": 14
             }
         },
         "Special Trade (1 hour)": {
@@ -147,7 +148,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 0
+                "Order": 1
             }
         },
         "Special Trade (2 hours)": {
@@ -167,7 +168,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 1
+                "Order": 2
             }
         },
         "Fence Trade": {
@@ -184,7 +185,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 2
+                "Order": 3
             }
         },
         "Unique Clash": {
@@ -203,7 +204,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 1
+                "Order": 2
             }
         },
         "Carnage Arena": {
@@ -222,7 +223,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 4
+                "Order": 5
             }
         },
         "Haroeris & Seth": {
@@ -242,7 +243,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 6
+                "Order": 7
             }
         },
         "Genie Reset":{
@@ -262,7 +263,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 11
+                "Order": 12
             }
         },
         "Calendar Reset":{
@@ -282,7 +283,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 10
+                "Order": 11
             }
         },
         "Fortress War":{
@@ -296,7 +297,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 9
+                "Order": 10
             }
         },
         "Ghost Hunt": {
@@ -314,8 +315,8 @@
             "register_method": "Event So-Ok",
             "enabled": true,
             "GUI_Location": {
-                "Side": "right",
-                "Order": 13
+                "Side": "left",
+                "Order": 14
             }
         },
         "Sailors Clash": {
@@ -334,7 +335,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 0
+                "Order": 1
             }
         },
         "Styria Clash": {
@@ -349,7 +350,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 2
+                "Order": 3
             }
         },
         "Carnage Party": {
@@ -368,7 +369,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 5
+                "Order": 6
             }
         },
         "SA Party": {
@@ -385,7 +386,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 12
+                "Order": 13
             }
         },
         "SA Solo": {
@@ -400,7 +401,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 11
+                "Order": 12
             }
         },
         "Selket & Neith": {
@@ -420,7 +421,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 4
+                "Order": 5
             }
         },
         "Anubis & Isis": {
@@ -440,7 +441,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 5
+                "Order": 6
             }
         },
         "Roc": {
@@ -454,7 +455,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 8
+                "Order": 9
             }
         },
         "Medusa": {
@@ -470,7 +471,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 7
+                "Order": 8
             }
         },
         "Clash of the Gods": {
@@ -489,7 +490,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "left",
-                "Order": 3
+                "Order": 4
             }
         },
         "Moon Gem": {
@@ -509,7 +510,7 @@
             "enabled": true,
             "GUI_Location": {
                 "Side": "right",
-                "Order": 11
+                "Order": 13
             }
         }
     }
