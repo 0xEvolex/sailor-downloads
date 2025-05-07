@@ -1,6 +1,6 @@
 {
     "serverTimezone": "Etc/GMT-3",
-    "serverDelay": 180,
+    "serverDelay": 0,
     "serverName": "Sailor Online - Persian Empire",
     "serverEvents": {
         "Poison Temple": {
