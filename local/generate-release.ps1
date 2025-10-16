@@ -23,7 +23,9 @@ param(
     [string]$ProjectId,
     [string]$Output,
     [switch]$Publish,
-    [switch]$DryRun
+    [switch]$DryRun,
+    [string]$Ref = 'HEAD',
+    [switch]$ForceTag
 )
 
 Set-StrictMode -Version Latest
@@ -177,14 +179,42 @@ if ($Publish) {
 
     $title = "$projectName $version"
 
-    # Ensure tag exists locally (real run) then push
+    # Resolve desired ref commit
+    $desiredSha = $Ref
     if (-not $DryRun) {
-        $existing = (& $gitExe tag --list $tag) | Where-Object { $_ -eq $tag }
-            if (-not $existing) { Run-Cmd $gitExe 'tag' $tag } else { Write-Host "Tag '$tag' already exists locally." }
-    } else {
-        Run-Cmd $gitExe @('tag', $tag)
+        $desiredSha = (& $gitExe rev-parse $Ref).Trim()
+        if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($desiredSha)) {
+            throw "Failed to resolve ref '$Ref' to a commit."
+        }
     }
-        Run-Cmd $gitExe 'push' 'origin' $tag
+
+    # Ensure tag exists locally at desired ref
+    $forcePush = $false
+    if (-not $DryRun) {
+        $existingTag = (& $gitExe tag --list $tag) | Where-Object { $_ -eq $tag }
+        if (-not $existingTag) {
+            Run-Cmd $gitExe 'tag' $tag $desiredSha
+        } else {
+            $existingSha = $null
+            try { $existingSha = (& $gitExe rev-parse $tag).Trim() } catch { $existingSha = $null }
+            if ($existingSha -and ($existingSha -ne $desiredSha)) {
+                if ($ForceTag) {
+                    Write-Host "Retagging '$tag' from $existingSha to $desiredSha ..."
+                    Run-Cmd $gitExe 'tag' '-f' $tag $desiredSha
+                    $forcePush = $true
+                } else {
+                    Write-Warning "Tag '$tag' already points to $existingSha, which differs from ref '$Ref' ($desiredSha). Use -ForceTag to retag, or specify -Ref 'main'."
+                }
+            } else {
+                Write-Host "Tag '$tag' already exists at $existingSha."
+            }
+        }
+    } else {
+        Run-Cmd $gitExe 'tag' $tag $desiredSha
+    }
+
+    # Push tag (force if retagged)
+    if ($forcePush) { Run-Cmd $gitExe 'push' '--force' 'origin' $tag } else { Run-Cmd $gitExe 'push' 'origin' $tag }
 
     if ($releaseExists -and -not $DryRun) {
            Run-Cmd $ghExe 'release' 'edit' $tag '--title' $title '--notes-file' $Output

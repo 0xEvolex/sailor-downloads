@@ -1,4 +1,4 @@
-﻿![Sailor Events](https://raw.githubusercontent.com/0xEvolex/sailor-downloads/main/images/sailor-events/card.png)
+﻿![Sailor Hide](https://raw.githubusercontent.com/0xEvolex/sailor-downloads/main/images/sailor-hide/card.png)
 
 ## What's new
 
@@ -16,8 +16,8 @@ If Windows SmartScreen or your antivirus prompts you, you may need to click "Mor
 
 ## Notes
 
-- Version: 1.6
-- Tag: sailor-events-v1.6
+- Version: 1.0
+- Tag: sailor-hide-v1.0
 - Released: 2025-10-16
 
 **Binary release only, ignore the 'Source code' downloads.**

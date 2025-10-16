@@ -1,5 +1,3 @@
-# {{projectName}} {{version}}
-
 ![{{projectName}}]({{imageUrl}})
 
 ## What's new
@@ -8,11 +6,11 @@
 
 ## Download
 
-To install, download the appended .exe / .rar / .zip file from the Assets section below:
+To install, download the appended `.zip` file from the Assets section below:
 
 1. Scroll to the Assets section of this release.
-2. Find the mentioned file ending in `.exe`, `.rar`, or `.zip`.
-3. If necessary, extract the archive and follow the included README.txt or run the application.
+2. Find the mentioned file ending in `.zip` and click to download.
+3. Extract the `.zip` archive and run the application, follow README or other included instructions.
 
 If Windows SmartScreen or your antivirus prompts you, you may need to click "More info" then "Run anyway" (if you trust this source).
 
@@ -21,3 +19,5 @@ If Windows SmartScreen or your antivirus prompts you, you may need to click "Mor
 - Version: {{version}}
 - Tag: {{tag}}
 - Released: {{releaseDate}}
+
+**Binary release only, ignore the 'Source code' downloads.**
