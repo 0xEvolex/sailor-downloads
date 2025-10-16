@@ -27,15 +27,15 @@
       "versionFile": "version.txt",
       "heroImage": { "repoPath": "images/sailor-hide/card.png" },
       "tagFormat": "sailor-hide-v{version}",
-      "assets": { "extensions": [ ".exe" ] }
+      "assets": { "extensions": [ ".zip" ] }
     },
     {
-      "id": "sailor-sleep",
-      "displayName": "Sailor Sleep",
-      "projectDir": "sailor-sleep",
+      "id": "sro-sleep",
+      "displayName": "SRO Sleep",
+      "projectDir": "sro-sleep",
       "versionFile": "version.txt",
-      "heroImage": { "repoPath": "images/sailor-sleep/card.png" },
-      "tagFormat": "sailor-sleep-v{version}",
+      "heroImage": { "repoPath": "images/sro-sleep/card.png" },
+      "tagFormat": "sro-sleep-v{version}",
       "assets": { "extensions": [ ".zip" ] }
     },
     {
