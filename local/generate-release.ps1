@@ -25,7 +25,9 @@ param(
     [switch]$Publish,
     [switch]$DryRun,
     [string]$Ref = 'HEAD',
-    [switch]$ForceTag
+    [switch]$ForceTag,
+    [switch]$SeriesTag,
+    [switch]$Latest
 )
 
 Set-StrictMode -Version Latest
@@ -141,7 +143,7 @@ if ($Publish) {
             [Parameter(ValueFromRemainingArguments=$true)]
             [string[]]$CmdArgs
         )
-        $argsStr = ($CmdArgs | ForEach-Object { if ($_ -match '\\s') { '"' + $_ + '"' } else { $_ } }) -join ' '
+        $argsStr = ($CmdArgs | ForEach-Object { if ($_ -match '\s') { '"' + $_ + '"' } else { $_ } }) -join ' '
         Write-Host "> $Exe $argsStr"
         if ($DryRun) { return }
         & $Exe @CmdArgs
@@ -177,7 +179,7 @@ if ($Publish) {
         try { & $ghExe release view $tag | Out-Null; if ($LASTEXITCODE -eq 0) { $releaseExists = $true } } catch { $releaseExists = $false }
     }
 
-    $title = "$projectName $version"
+    $title = "$projectName v$version"
 
     # Resolve desired ref commit
     $desiredSha = $Ref
@@ -216,6 +218,22 @@ if ($Publish) {
     # Push tag (force if retagged)
     if ($forcePush) { Run-Cmd $gitExe 'push' '--force' 'origin' $tag } else { Run-Cmd $gitExe 'push' 'origin' $tag }
 
+    # Optionally move/update a moving series tag (e.g., 'sailor-events') for easy filtering
+    if ($SeriesTag -and $project.PSObject.Properties.Name -contains 'seriesTag' -and $project.seriesTag) {
+        $series = [string]$project.seriesTag
+        if (-not $DryRun) {
+            $existingSeries = (& $gitExe tag --list $series) | Where-Object { $_ -eq $series }
+            if (-not $existingSeries) {
+                Run-Cmd $gitExe 'tag' $series $desiredSha
+            } else {
+                Run-Cmd $gitExe 'tag' '-f' $series $desiredSha
+            }
+        } else {
+            Run-Cmd $gitExe 'tag' $series $desiredSha
+        }
+        Run-Cmd $gitExe 'push' '--force' 'origin' $series
+    }
+
     if ($releaseExists -and -not $DryRun) {
            Run-Cmd $ghExe 'release' 'edit' $tag '--title' $title '--notes-file' $Output
     } else {
@@ -235,9 +253,67 @@ if ($Publish) {
 
     if ($assetFiles.Count -gt 0) {
         Write-Host ("Uploading assets (" + ($assetFiles -join ', ') + ")")
-            Run-Cmd $ghExe 'release' 'upload' $tag @assetFiles '--clobber'
+        Run-Cmd $ghExe 'release' 'upload' $tag @assetFiles '--clobber'
     } else {
         Write-Warning "No assets found in '$projectDir' matching configured extensions. Skipping upload."
+    }
+
+    # Optionally move/update a per-app latest tag and create/update a matching release with stable asset name
+    if ($Latest) {
+        $latestTagName = $null
+        if ($project.PSObject.Properties.Name -contains 'latestTag' -and $project.latestTag) {
+            $latestTagName = [string]$project.latestTag
+        } else {
+            $latestTagName = [string]("{0}-latest" -f $project.id)
+        }
+
+        # Create or force-update the lightweight tag locally
+        if (-not $DryRun) {
+            $existingLatest = (& $gitExe tag --list $latestTagName) | Where-Object { $_ -eq $latestTagName }
+            if (-not $existingLatest) {
+                Run-Cmd $gitExe 'tag' $latestTagName $desiredSha
+            } else {
+                Run-Cmd $gitExe 'tag' '-f' $latestTagName $desiredSha
+            }
+        } else {
+            Run-Cmd $gitExe 'tag' $latestTagName $desiredSha
+        }
+        Run-Cmd $gitExe 'push' '--force' 'origin' $latestTagName
+
+        # Ensure a GitHub Release exists for the latest tag (so assets have a stable URL)
+        $latestReleaseExists = $false
+        if (-not $DryRun) {
+            try { & $ghExe release view $latestTagName | Out-Null; if ($LASTEXITCODE -eq 0) { $latestReleaseExists = $true } } catch { $latestReleaseExists = $false }
+        }
+
+    $latestTitle = "$projectName v$version"
+        if ($latestReleaseExists -and -not $DryRun) {
+            Run-Cmd $ghExe 'release' 'edit' $latestTagName '--title' $latestTitle '--notes-file' $Output
+        } else {
+            Run-Cmd $ghExe 'release' 'create' $latestTagName '--title' $latestTitle '--notes-file' $Output
+        }
+
+        # Upload assets to the latest release with a stable name when possible
+        if ($assetFiles.Count -gt 0) {
+            # Determine stable asset name default: <project.id><ext> for single-asset case
+            $assetArgs = @()
+            if ($assetFiles.Count -eq 1) {
+                $ext = [System.IO.Path]::GetExtension($assetFiles[0])
+                $stableName = $null
+                if ($project.assets -and $project.assets.PSObject.Properties.Name -contains 'stableName' -and $project.assets.stableName) {
+                    $stableName = [string]$project.assets.stableName
+                } else {
+                    $stableName = [string]("{0}{1}" -f $project.id, $ext)
+                }
+                $assetArgs += ("{0}#{1}" -f $assetFiles[0], $stableName)
+            } else {
+                # Multiple assets: upload with original names unless stable names are explicitly configured per file (not supported here)
+                $assetArgs += $assetFiles
+            }
+            Run-Cmd $ghExe 'release' 'upload' $latestTagName @assetArgs '--clobber'
+        } else {
+            Write-Warning "No assets found to upload to latest release '$latestTagName'."
+        }
     }
 
     Write-Host "Publish complete for '$tag'."

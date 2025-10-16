@@ -18,6 +18,8 @@
       "versionFile": "version.txt",
       "heroImage": { "repoPath": "images/sailor-events/card.png" },
       "tagFormat": "sailor-events-v{version}",
+      "seriesTag": "sailor-events",
+      "latestTag": "sailor-events-latest",
       "assets": { "extensions": [ ".rar" ] }
     },
     {
@@ -27,6 +29,8 @@
       "versionFile": "version.txt",
       "heroImage": { "repoPath": "images/sailor-hide/card.png" },
       "tagFormat": "sailor-hide-v{version}",
+      "seriesTag": "sailor-hide",
+      "latestTag": "sailor-hide-latest",
       "assets": { "extensions": [ ".zip" ] }
     },
     {
@@ -36,19 +40,25 @@
       "versionFile": "version.txt",
       "heroImage": { "repoPath": "images/sro-sleep/card.png" },
       "tagFormat": "sro-sleep-v{version}",
+      "seriesTag": "sro-sleep",
+      "latestTag": "sro-sleep-latest",
       "assets": { "extensions": [ ".zip" ] }
     },
     {
       "id": "sailor-navi",
       "displayName": "Sailor Navi",
       "projectDir": "sailor-navi",
-      "tagFormat": "sailor-navi-v{version}"
+      "tagFormat": "sailor-navi-v{version}",
+      "seriesTag": "sailor-navi",
+      "latestTag": "sailor-navi-latest"
     },
     {
       "id": "sailor-jarvis",
       "displayName": "Sailor Jarvis",
       "projectDir": "sailor-jarvis",
-      "tagFormat": "sailor-jarvis-v{version}"
+      "tagFormat": "sailor-jarvis-v{version}",
+      "seriesTag": "sailor-jarvis",
+      "latestTag": "sailor-jarvis-latest"
     }
   ]
 }
