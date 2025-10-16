@@ -1,0 +1,54 @@
+{
+  "repo": {
+    "owner": "0xEvolex",
+    "name": "sailor-downloads",
+    "defaultBranch": "main"
+  },
+  "output": {
+    "draftsDir": "local/releases"
+  },
+  "template": {
+    "releaseNotes": "local/release-template.md"
+  },
+  "projects": [
+    {
+      "id": "sailor-events",
+      "displayName": "Sailor Events",
+      "projectDir": "sailor-events",
+      "versionFile": "version.txt",
+      "heroImage": { "repoPath": "images/sailor-events/card.png" },
+      "tagFormat": "sailor-events-v{version}",
+      "assets": { "extensions": [ ".rar" ] }
+    },
+    {
+      "id": "sailor-hide",
+      "displayName": "Sailor Hide",
+      "projectDir": "sailor-hide",
+      "versionFile": "version.txt",
+      "heroImage": { "repoPath": "images/sailor-hide/card.png" },
+      "tagFormat": "sailor-hide-v{version}",
+      "assets": { "extensions": [ ".exe" ] }
+    },
+    {
+      "id": "sailor-sleep",
+      "displayName": "Sailor Sleep",
+      "projectDir": "sailor-sleep",
+      "versionFile": "version.txt",
+      "heroImage": { "repoPath": "images/sailor-sleep/card.png" },
+      "tagFormat": "sailor-sleep-v{version}",
+      "assets": { "extensions": [ ".zip" ] }
+    },
+    {
+      "id": "sailor-navi",
+      "displayName": "Sailor Navi",
+      "projectDir": "sailor-navi",
+      "tagFormat": "sailor-navi-v{version}"
+    },
+    {
+      "id": "sailor-jarvis",
+      "displayName": "Sailor Jarvis",
+      "projectDir": "sailor-jarvis",
+      "tagFormat": "sailor-jarvis-v{version}"
+    }
+  ]
+}
