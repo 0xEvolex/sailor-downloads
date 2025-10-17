@@ -118,6 +118,28 @@ $replacements = @{
     '{{imageUrl}}'    = $imageUrl
     '{{releaseDate}}' = $releaseDate
 }
+ 
+# Compute asset extension label(s) for template (e.g., ".zip" or ".exe", or " .zip, .7z, or .rar")
+$assetExtLabel = 'file'
+if ($project.assets -and $project.assets.extensions) {
+    $exts = @()
+    foreach ($ext in $project.assets.extensions) {
+        if ([string]::IsNullOrWhiteSpace($ext)) { continue }
+        $e = [string]$ext
+        $e = $e.Trim()
+        if (-not $e.StartsWith('.')) { $e = '.' + $e }
+        $exts += $e
+    }
+    if ($exts.Count -eq 1) {
+        $assetExtLabel = $exts[0]
+    } elseif ($exts.Count -eq 2) {
+        $assetExtLabel = ("{0} or {1}" -f $exts[0], $exts[1])
+    } elseif ($exts.Count -gt 2) {
+        $assetExtLabel = ((($exts[0..($exts.Count-2)]) -join ', ') + ", or " + $exts[-1])
+    }
+}
+
+$replacements['{{assetExt}}'] = $assetExtLabel
 foreach ($key in $replacements.Keys) {
     $content = $content.Replace($key, [string]$replacements[$key])
 }
