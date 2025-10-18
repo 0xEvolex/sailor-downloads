@@ -1,6 +1,6 @@
 # sailor-downloads
 
-This repository is the download hub for software made by 0xEvolex. It hosts binary releases for multiple small apps.
+This repository is the download hub for software made by 0xEvolex. It hosts binary releases for multiple small applications.
 
 ## How to download
 - Go to the Releases page: https://github.com/0xEvolex/sailor-downloads/releases
