@@ -18,7 +18,7 @@ If Windows SmartScreen or your antivirus prompts you, you may need to click "Mor
 
 - Version: 1.1
 - Tag: sailor-hide-v1.1
-- Released: 2025-10-17
+- Released: 2025-10-18
 
 **Binary release only, ignore the 'Source code' downloads.**
 
